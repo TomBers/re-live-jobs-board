@@ -74,14 +74,20 @@ defmodule LiveJobsBoardWeb.EditEntry do
   def mount(%{path_params: %{"board_id" => id, "entry_id" => entry_id}}, socket) do
     pid = ServerHelper.get_server_from_id(id)
     {schema, entry} = GenServer.call(pid, {:get_item, String.to_integer(entry_id)})
-    IO.inspect(entry)
     data =
       schema
-      |> IO.inspect
-      |> Enum.map(fn({k, v}) -> {k, v |> Map.put(:value, Map.get(entry, k, %{value: ""}).value)} end)
+      |> Enum.map(fn({k, v}) -> {k, v |> Map.put(:value, get_value_from_field(k, v, entry))} end)
       |> Enum.map(fn({k, v}) -> v |> Map.put(:field_name, k) end)
 
     {:ok, assign(socket, board_id: id, entry_id: entry_id, schema: data)}
+  end
+
+  def get_value_from_field(key, field, entry) do
+    case field.type do
+      "MULTIPLECHOICE" -> Map.get(entry, key, %{value: [""]}).value
+      _ -> Map.get(entry, key, %{value: ""}).value
+    end
+
   end
 
 end
