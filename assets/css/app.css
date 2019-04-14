@@ -1,0 +1,118 @@
+/* This file is for your main application css. */
+
+flex-container {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+}
+
+.flex-item {
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+/*Banner*/
+
+body {
+  margin: 0px;
+  font-weight: 300;
+  font-family: 'Rubik', serif;
+}
+
+.banner {
+  color: white;
+  text-align: left;
+  background-size: cover !important;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4em;
+  padding-top: .5em;
+}
+
+.banner h1 {
+  font-weight: 500;
+  font-size: 100px;
+  color: #FFE41E;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  display: block;
+  margin: 0em;
+  padding: 1em;
+}
+.banner p {
+  font-size: 25px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+ /* margin-bottom: 30px;*/
+}
+
+/* separator bar*/
+
+hr {
+  background-color: #E30285;
+  display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}
+
+hr.haar {
+  border: 0;
+  height: 20px;
+  width: 10vw;
+  background: #FFE41E;
+  margin: 0 auto;
+  margin-left: 0vw;
+}
+
+/* background color light gray*/
+
+.bg-dark {
+  color: #300124;
+  background-color: #F1F1F1;
+  margin-top: -22px;
+}
+
+/* screen size */
+@media (max-width: 1044px) {
+.banner h1 {
+  font-size: 75px;
+  }
+}
+
+@media (max-width: 750px) {
+.banner {
+  padding-left: 2em;
+}
+
+.banner h1 {
+  font-size: 60px;
+  }
+}
+
+@media (max-width: 750px) {
+.banner h1 {
+  font-size: 60px;
+  }
+}
+
+.search-heading {
+   text-transform: capitalize;
+}
+
+.form-box {
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}

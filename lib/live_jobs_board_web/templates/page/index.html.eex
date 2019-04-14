@@ -1,0 +1,23 @@
+<section class="phx-hero">
+  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix LiveView" %></h2>
+  <%= live_render(@conn, LiveJobsBoardWeb.WeatherLive) %>
+</section>
+
+<section class="row">
+  <article class="column">
+    <h4>LiveView Examples</h4>
+    <ul>
+      <li><%= link "Thermostat", to: Routes.live_path(@conn, LiveJobsBoardWeb.ThermostatLive) %></li>
+      <li><%= link "Snake", to: Routes.page_path(@conn, :snake) %></li>
+      <li><%= link "Search with Autocomplete", to: Routes.live_path(@conn, LiveJobsBoardWeb.SearchLive) %></li>
+      <li><%= link "Image Editor", to: Routes.live_path(@conn, LiveJobsBoardWeb.ImageLive) %></li>
+      <li><%= link "Clock", to: Routes.live_path(@conn, LiveJobsBoardWeb.ClockLive) %></li>
+      <li><%= link "Pacman", to: Routes.live_path(@conn, LiveJobsBoardWeb.PacmanLive) %></li>
+      <li><%= link "Rainbow", to: Routes.live_path(@conn, LiveJobsBoardWeb.RainbowLive) %></li>
+      <li><%= link "Counter", to: Routes.live_path(@conn, LiveJobsBoardWeb.CounterLive) %></li>
+      <li><%= link "Top", to: Routes.live_path(@conn, LiveJobsBoardWeb.TopLive) %></li>
+      <li><%= link "CRUD Users", to: Routes.live_path(@conn, LiveJobsBoardWeb.UserLive.Index) %></li>
+      <li><%= link "Presence Example", to: Routes.live_path(@conn, LiveJobsBoardWeb.UserLive.PresenceIndex, "user#{System.unique_integer([:positive])}") %></li>
+    </ul>
+  </article>
+</section>
