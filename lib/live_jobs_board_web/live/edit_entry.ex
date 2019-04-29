@@ -6,10 +6,15 @@ defmodule LiveJobsBoardWeb.EditEntry do
     ~L"""
     <div>
       <h1>Edit</h1>
-      <form action="/board/<%= assigns.board_id %>/entry/<%= assigns.entry_id %>/update" method="get">
-      <%= for field <- @schema do %>
+      <form action="/board/<%= assigns.session.board_id %>/entry/<%= assigns.session.entry_id %>/update" method="post" enctype="multipart/form-data">
+      <%= for field <- assigns.session.schema do %>
         <div><%= render_input(field) %></div>
       <% end %>
+      <div class="form-group">
+    <label>Photo</label>
+    <input class="form-control" id="logo_photo" name="logo" type="file">
+    </div>
+      <input type="hidden" name="_csrf_token" value="<%= assigns.session.csrf_token %>" />
       <input type="submit" value="Submit">
       </form>
     </div>
@@ -67,27 +72,6 @@ defmodule LiveJobsBoardWeb.EditEntry do
     <%= assigns.field_name %> <input type="text" name="<%= assigns.field_name %>" value="<%= assigns.value %>">
 
     """
-  end
-
-
-
-  def mount(%{path_params: %{"board_id" => id, "entry_id" => entry_id}}, socket) do
-    pid = ServerHelper.get_server_from_id(id)
-    {schema, entry} = GenServer.call(pid, {:get_item, String.to_integer(entry_id)})
-    data =
-      schema
-      |> Enum.map(fn({k, v}) -> {k, v |> Map.put(:value, get_value_from_field(k, v, entry))} end)
-      |> Enum.map(fn({k, v}) -> v |> Map.put(:field_name, k) end)
-
-    {:ok, assign(socket, board_id: id, entry_id: entry_id, schema: data)}
-  end
-
-  def get_value_from_field(key, field, entry) do
-    case field.type do
-      "MULTIPLECHOICE" -> Map.get(entry, key, %{value: [""]}).value
-      _ -> Map.get(entry, key, %{value: ""}).value
-    end
-
   end
 
 end

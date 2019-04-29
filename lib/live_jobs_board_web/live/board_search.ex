@@ -14,6 +14,7 @@ defmodule LiveJobsBoardWeb.BoardSearch do
       <div class="flex-container">
         <%= for job <- @jobs do %>
           <div class="flex-item">
+            <%= render_logo(job.logo) %>
             <%= for {k,v} <- job do %>
               <%= render_field(%{key: k, field: v}) %>
             <% end %>
@@ -31,7 +32,7 @@ defmodule LiveJobsBoardWeb.BoardSearch do
 
     ~L"""
     <div>
-      <%= if assigns.key != :id do %>
+      <%= if assigns.key not in [:id, :logo] do %>
         <%= assigns.key %> ::
           <%= for val <- JobField.return_val(assigns.field) do %>
                 <a href="#" phx-click="filter" phx-value="<%= JobField.encode(assigns, val) %>" ><%= val %></a>
@@ -41,10 +42,22 @@ defmodule LiveJobsBoardWeb.BoardSearch do
     """
   end
 
+  def render_logo(assigns) do
+    logo = Enum.into(assigns, %{})
+    ~L"""
+    <div>
+    <%= if logo.value != "" do %>
+    <img class="logo" src="/images/<%= logo.value %>"></img>
+    <% end %>
+    </div>
+    """
+  end
+
   def mount(%{path_params: %{"board_id" => id}}, socket) do
     pid = ServerHelper.get_server_from_id(id)
 #    1..4 |> Enum.each(fn(_) -> GenServer.call(pid, :new_job) end)
     jobs = BoardFilter.get_jobs(GenServer.call(pid, :list), [])
+    IO.inspect(jobs)
     {:ok, assign(socket, board_id: id, jobs: jobs, filters: [])}
   end
 

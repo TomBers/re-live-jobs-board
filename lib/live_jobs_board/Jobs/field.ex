@@ -35,6 +35,9 @@ defmodule JobField do
         ["Bob"]
     end
 
+    def image_field(), do: %JobField{value: "", type: "IMAGE", options: []}
+    def image_field(value), do: %JobField{value: value, type: "IMAGE", options: []}
+
     def text_field(), do: %JobField{value: "", type: "TEXT", options: []}
     def text_field(value), do: %JobField{value: value, type: "TEXT", options: []}
 

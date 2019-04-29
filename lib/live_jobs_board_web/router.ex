@@ -24,8 +24,8 @@ defmodule LiveJobsBoardWeb.Router do
     live "/click", ClickLive
     live "/board/:board_id", BoardSearch
     live "/board/:board_id/edit", EditBoard
-    live "/board/:board_id/entry/:entry_id", EditEntry
-    get "/board/:board_id/entry/:entry_id/update", PageController, :update_entry
+    get "/board/:board_id/entry/:entry_id", PageController, :get_entry
+    post "/board/:board_id/entry/:entry_id/update", PageController, :update_entry
     get "/snake", PageController, :snake
     live "/search", SearchLive
     live "/clock", ClockLive

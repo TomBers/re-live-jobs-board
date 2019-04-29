@@ -13,7 +13,7 @@ defmodule LiveJobsBoardWeb.EditBoard do
       <%= if assigns.new_field do %>
         <form phx-change="add-new-field-text">
           <input type="text" name="new-field">
-          <a href="#" phx-click="add-new-field-confirm" phx-value="new-field">Add field</a>
+          <a href="#" phx-click="add-new-field-confirm" phx-value="new-field">Save field</a>
         </form>
       <% end %>
       <input type="submit" value="Submit" phx-click="save-schema" class="btn waves-effect waves-light">
