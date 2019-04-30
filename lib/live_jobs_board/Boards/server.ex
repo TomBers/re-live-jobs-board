@@ -66,6 +66,10 @@ defmodule BoardServer do
     {:reply, {state.schema, state.entries[id]}, state}
   end
 
+  def handle_call({:removelogo, id}, _, state) do
+    {:reply, {state.schema, state.entries[id]}, state}
+  end
+
   def handle_call(:new_job, _, state) do
     board = Board.add_entry(state, ServerHelper.sample_data())
     set_board(board)

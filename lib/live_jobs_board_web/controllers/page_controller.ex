@@ -34,6 +34,7 @@ defmodule LiveJobsBoardWeb.PageController do
       |> Enum.filter(fn({key, value}) -> key not in ["board_id", "entry_id", "_csrf_token", "logo"] end)
       |> Enum.filter(fn({key, value}) -> !String.starts_with?(key, "::") end)
 
+    IO.inspect(form_values)
     check_box_values = params |> Enum.filter(fn({key, value}) -> String.starts_with?(key, "::") end)
 
     pid = ServerHelper.get_server_from_id(board_id)

@@ -73,7 +73,7 @@ defmodule LiveJobsBoardWeb.EditBoard do
     board = GenServer.call(pid, :list)
     IO.inspect(board)
     dat = board.schema
-      |> Enum.filter(fn({k, v}) -> k != :posted end)
+      |> Enum.filter(fn({k, v}) -> k not in [:posted, :logo] end)
       |> Enum.map(fn({k, v}) -> v |> Map.put(:field_name, k) end)
 
 
