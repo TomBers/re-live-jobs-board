@@ -20,26 +20,9 @@ defmodule LiveJobsBoardWeb.Router do
 
     get "/", PageController, :index
 
-    live "/thermostat", ThermostatLive
-    live "/click", ClickLive
     live "/board/:board_id", BoardSearch
     live "/board/:board_id/edit", EditBoard
     get "/board/:board_id/entry/:entry_id", PageController, :get_entry
     post "/board/:board_id/entry/:entry_id/update", PageController, :update_entry
-    get "/snake", PageController, :snake
-    live "/search", SearchLive
-    live "/clock", ClockLive
-    live "/image", ImageLive
-    live "/pacman", PacmanLive
-    live "/rainbow", RainbowLive
-    live "/counter", CounterLive
-    live "/top", TopLive
-    live "/presence_users/:name", UserLive.PresenceIndex
-    live "/users", UserLive.Index
-    live "/users/new", UserLive.New
-    live "/users/:id", UserLive.Show
-    live "/users/:id/edit", UserLive.Edit
-
-    resources "/plain/users", UserController
   end
 end
