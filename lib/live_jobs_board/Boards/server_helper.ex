@@ -13,6 +13,7 @@ defmodule ServerHelper do
 
   def make_sample_schema do
     %{
+      logo: JobField.image_field(),
       name: JobField.text_field(),
       location: JobField.option_field(["London", "Manchester", "Amsterdam"]),
       skills: JobField.multiple_choice_field((["Developer", "Data scientist", "Project manager"])),
@@ -22,6 +23,7 @@ defmodule ServerHelper do
 
   def sample_data do
     %{
+      logo: JobField.image_field(),
       name: JobField.text_field(make_a_string),
       location: JobField.option_field(Enum.random(["London", "Manchester", "Amsterdam"]), ["London", "Manchester", "Amsterdam"]),
       skills: JobField.multiple_choice_field([Enum.random(["Developer", "Data scientist", "Project manager"])], ["Developer", "Data scientist", "Project manager"]),

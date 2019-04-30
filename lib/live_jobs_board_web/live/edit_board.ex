@@ -13,7 +13,7 @@ defmodule LiveJobsBoardWeb.EditBoard do
       <%= if assigns.new_field do %>
         <form phx-change="add-new-field-text">
           <input type="text" name="new-field">
-          <a href="#" phx-click="add-new-field-confirm" phx-value="new-field">Add field</a>
+          <a href="#" phx-click="add-new-field-confirm" phx-value="new-field">Save field</a>
         </form>
       <% end %>
       <input type="submit" value="Submit" phx-click="save-schema" class="btn waves-effect waves-light">
@@ -73,7 +73,7 @@ defmodule LiveJobsBoardWeb.EditBoard do
     board = GenServer.call(pid, :list)
     IO.inspect(board)
     dat = board.schema
-      |> Enum.filter(fn({k, v}) -> k != :posted end)
+      |> Enum.filter(fn({k, v}) -> k not in [:posted, :logo] end)
       |> Enum.map(fn({k, v}) -> v |> Map.put(:field_name, k) end)
 
 

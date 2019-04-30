@@ -14,6 +14,7 @@ defmodule LiveJobsBoardWeb.BoardSearch do
       <div class="flex-container">
         <%= for job <- @jobs do %>
           <div class="flex-item">
+            <%= render_logo(job.logo) %>
             <%= for {k,v} <- job do %>
               <%= render_field(%{key: k, field: v}) %>
             <% end %>
@@ -31,12 +32,23 @@ defmodule LiveJobsBoardWeb.BoardSearch do
 
     ~L"""
     <div>
-      <%= if assigns.key != :id do %>
+      <%= if assigns.key not in [:id, :logo] do %>
         <%= assigns.key %> ::
           <%= for val <- JobField.return_val(assigns.field) do %>
                 <a href="#" phx-click="filter" phx-value="<%= JobField.encode(assigns, val) %>" ><%= val %></a>
           <% end %>
       <%= end %>
+    </div>
+    """
+  end
+
+  def render_logo(assigns) do
+    logo = Enum.into(assigns, %{})
+    ~L"""
+    <div>
+    <%= if logo.value != "" do %>
+    <img class="logo" src="/images/<%= logo.value %>"></img>
+    <% end %>
     </div>
     """
   end
