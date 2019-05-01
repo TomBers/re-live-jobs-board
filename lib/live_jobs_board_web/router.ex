@@ -17,7 +17,6 @@ defmodule LiveJobsBoardWeb.Router do
 
   scope "/", LiveJobsBoardWeb do
     pipe_through :browser
-
     get "/", PageController, :index
 
     live "/board/:board_id", BoardSearch
