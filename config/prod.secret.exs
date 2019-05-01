@@ -12,6 +12,5 @@ config :live_jobs_board, LiveJobsBoardWeb.Endpoint,
 
 # Configure your database
 config :live_jobs_board, LiveJobsBoard.Repo,
-       ssl: true,
        url: System.get_env("DATABASE_URL"),
        size: String.to_integer(System.get_env("POOL_SIZE") || "10")
