@@ -15,7 +15,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :live_jobs_board, LiveJobsBoardWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: String.to_integer(System.get_env("PORT") || "80")]
+  url: [host: System.get_env("URL"), port: String.to_integer(System.get_env("PORT") || "80")]
 #  cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
