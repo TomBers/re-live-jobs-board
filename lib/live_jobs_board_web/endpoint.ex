@@ -41,8 +41,8 @@ defmodule LiveJobsBoardWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_demo_key",
-    signing_salt: "3YGvy8FF"
+    key: "_live_jobs_board_key",
+    signing_salt: "4YGvy3FF"
 
   plug LiveJobsBoardWeb.Router
 
