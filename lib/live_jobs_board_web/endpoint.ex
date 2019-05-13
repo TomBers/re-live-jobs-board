@@ -1,10 +1,10 @@
 defmodule LiveJobsBoardWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :live_jobs_board
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [timeout: 45_000]
+  socket "/live", Phoenix.LiveView.Socket, websocket: [timeout: 45_000, check_origin: false]
 
   socket "/socket", LiveJobsBoardWeb.UserSocket,
-    websocket: [timeout: 45_000],
+    websocket: [timeout: 45_000, check_origin: false],
     longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
