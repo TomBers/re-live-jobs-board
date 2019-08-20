@@ -6,27 +6,16 @@ defmodule ServerHelper do
 
   defp return_pid(id, :undefined) do
     {:ok, server} = DynamicSupervisor.start_child(ServerSupervisor, {BoardServer, id})
-
-    GenServer.cast(server, {:set_schema, make_sample_schema()})
     server
   end
 
-  def make_sample_schema do
-    %{
-      logo: JobField.image_field(),
-      name: JobField.text_field(),
-      location: JobField.option_field(["London", "Manchester", "Amsterdam"]),
-      skills: JobField.multiple_choice_field((["Developer", "Data scientist", "Project manager"])),
-      posted: JobField.date_field()
-    }
+  defp return_pid(id, pid) do
+    pid
   end
 
   defp make_a_string do
     Faker.Superhero.name
   end
 
-  defp return_pid(id, pid) do
-    pid
-  end
 
 end

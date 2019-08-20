@@ -50,7 +50,9 @@ defmodule BoardServer do
   end
 
   def handle_cast({:set_schema, schema}, state) do
-    {:noreply, Board.set_schema(state, schema)}
+    board = Board.set_schema(state, schema)
+    set_board(board)
+    {:noreply, board}
   end
 
 
