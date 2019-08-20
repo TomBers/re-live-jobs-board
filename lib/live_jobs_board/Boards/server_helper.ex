@@ -21,16 +21,6 @@ defmodule ServerHelper do
     }
   end
 
-  def sample_data do
-    %{
-      logo: JobField.image_field(),
-      name: JobField.text_field(make_a_string),
-      location: JobField.option_field(Enum.random(["London", "Manchester", "Amsterdam"]), ["London", "Manchester", "Amsterdam"]),
-      skills: JobField.multiple_choice_field([Enum.random(["Developer", "Data scientist", "Project manager"])], ["Developer", "Data scientist", "Project manager"]),
-      posted: JobField.date_field()
-    }
-  end
-
   defp make_a_string do
     Faker.Superhero.name
   end

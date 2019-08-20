@@ -66,12 +66,6 @@ defmodule BoardServer do
     {:reply, {state.schema, state.entries[id]}, state}
   end
 
-  def handle_call(:new_job, _, state) do
-    board = Board.add_entry(state, ServerHelper.sample_data())
-    set_board(board)
-    {:reply, board, board}
-  end
-
   def make_a_string do
     pick_words(2) |> make_string
   end
