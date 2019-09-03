@@ -3,18 +3,17 @@ defmodule Board do
 
   defstruct auto_id: 1, entries: %{}, name: "", schema: %{}
 
-
-  def new(), do: %Board{name: Faker.Pokemon.name()}
-
-  def new(name), do: %Board{name: name}
-
-  def new(entries \\ []) do
-    Enum.reduce(
-      entries,
-      new(),
-      fn(entry, acc) -> add_entry(acc, entry) end
-    )
+  def make_sample_schema do
+    %{
+      logo: JobField.image_field(),
+      name: JobField.text_field(),
+      location: JobField.option_field(["London", "Manchester", "Amsterdam"]),
+      skills: JobField.multiple_choice_field((["Developer", "Data scientist", "Project manager"])),
+      posted: JobField.date_field()
+    }
   end
+
+  def new(name), do: %Board{name: name, schema: make_sample_schema()}
 
   def set_schema(board, schema) do
     %Board{board | schema: schema}

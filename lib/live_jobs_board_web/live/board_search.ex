@@ -55,7 +55,6 @@ defmodule LiveJobsBoardWeb.BoardSearch do
 
   def mount(%{path_params: %{"board_id" => id}}, socket) do
     pid = ServerHelper.get_server_from_id(id)
-#    1..4 |> Enum.each(fn(_) -> GenServer.call(pid, :new_job) end)
     jobs = BoardFilter.get_jobs(GenServer.call(pid, :list), [])
     {:ok, assign(socket, board_id: id, jobs: jobs, filters: [])}
   end

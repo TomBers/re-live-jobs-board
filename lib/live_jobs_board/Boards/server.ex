@@ -50,7 +50,9 @@ defmodule BoardServer do
   end
 
   def handle_cast({:set_schema, schema}, state) do
-    {:noreply, Board.set_schema(state, schema)}
+    board = Board.set_schema(state, schema)
+    set_board(board)
+    {:noreply, board}
   end
 
 
@@ -64,12 +66,6 @@ defmodule BoardServer do
 
   def handle_call({:get_item, id}, _, state) do
     {:reply, {state.schema, state.entries[id]}, state}
-  end
-
-  def handle_call(:new_job, _, state) do
-    board = Board.add_entry(state, ServerHelper.sample_data())
-    set_board(board)
-    {:reply, board, board}
   end
 
   def make_a_string do
